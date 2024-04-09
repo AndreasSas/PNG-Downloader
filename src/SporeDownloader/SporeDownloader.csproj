@@ -5,10 +5,19 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <SelfContained>true</SelfContained>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CliArgsParser" Version="0.5.6" />
+      <ProjectReference Include="..\SporeDownloader.Lib\SporeDownloader.Lib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SporeDownloader.Lib\SporeDownloader.Lib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CliArgsParser" Version="0.6.0-preview-202404091715" />
     </ItemGroup>
 
 </Project>

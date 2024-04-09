@@ -1,6 +1,7 @@
 ﻿// ---------------------------------------------------------------------------------------------------------------------
 // Imports
 // ---------------------------------------------------------------------------------------------------------------------
+using CliArgsParser.Contracts;
 using SporeDownloader.Cli;
 
 namespace SporeDownloader;
@@ -9,9 +10,10 @@ namespace SporeDownloader;
 // Code
 // ---------------------------------------------------------------------------------------------------------------------
 public static class Program {
+    private static readonly ICliArgsParser _parser = new CliArgsParser.CliArgsParser()
+        .RegisterFromCliAtlas(new CommandAtlas());
+    
     public static void Main(string[] args) {
-        new CliArgsParser.CliArgsParser()
-            .RegisterFromCliAtlas(new CommandAtlas())
-            .TryParse(args);
+        Task.Run(() => _parser.TryParseAsync(args)) ;
     }
 }

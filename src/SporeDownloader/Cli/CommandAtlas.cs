@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 using CliArgsParser;
 using CliArgsParser.Attributes;
+using SporeDownloader.Lib;
 
 namespace SporeDownloader.Cli;
 
@@ -10,6 +11,8 @@ namespace SporeDownloader.Cli;
 // Code
 // ---------------------------------------------------------------------------------------------------------------------
 public class CommandAtlas : CliCommandAtlas {
+    public SporeServer _sporeServer = new();
+        
     // -----------------------------------------------------------------------------------------------------------------
     // Commands
     // -----------------------------------------------------------------------------------------------------------------
@@ -21,5 +24,13 @@ public class CommandAtlas : CliCommandAtlas {
             Environment.Exit(-1);
         }
         
+    }
+    
+    [CliCommand<SporeDownloaderArgs>("stats")]
+    public async void Stats(SporeDownloaderArgs args) {
+        Console.WriteLine("ha");
+        var data = await _sporeServer.GetStats();
+        Console.WriteLine(data.Document?.ToString());
+        Console.WriteLine(data.ToString());
     }
 }
